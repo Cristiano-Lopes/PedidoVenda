@@ -9,7 +9,7 @@
 			<p:inputText size="8" />
 		</p:column>
 		<p:column headerText="Produto">
-			<p:autoComplete />
+			<p:autoComplete styleClass="produto-tabela"/>
 		</p:column>
 		<p:column headerText="Valor unitário"
 			style="text-align: right; width: 120px">
@@ -27,6 +27,14 @@
 			style="text-align: right; width: 100px">
 			<h:outputText value="R$ 0,00" />
 		</p:column>
+
+		<p:columnGroup type="footer">
+			<p:row>
+				<p:column colspan="5" footerText="Subtotal"
+					style="text-align: right" />
+				<p:column footerText="R$ 0,00" style="text-align: right"/>
+			</p:row>
+		</p:columnGroup>
 	</p:dataTable>
 
 </ui:composition>
