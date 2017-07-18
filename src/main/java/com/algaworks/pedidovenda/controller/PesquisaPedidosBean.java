@@ -3,8 +3,8 @@ package com.algaworks.pedidovenda.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 
 @ManagedBean
 @RequestScoped

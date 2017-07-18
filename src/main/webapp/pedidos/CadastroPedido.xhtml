@@ -11,6 +11,8 @@
 		<h:form>
 			<h1>Novo Pedido</h1>
 
+			<p:messages autoUpdate="true" />
+
 			<ui:include src="/WEB-INF/template/pedidos/BotoesPedido.xhtml" />
 
 			<ui:include src="/WEB-INF/template/pedidos/CapaPedido.xhtml" />
@@ -24,8 +26,7 @@
 						src="/WEB-INF/template/pedidos/DadosEntregaPedido.xhtml" />
 				</p:tab>
 				<p:tab title="Observação">
-					<ui:include
-						src="/WEB-INF/template/pedidos/ObservacaoPedido.xhtml" />
+					<ui:include src="/WEB-INF/template/pedidos/ObservacaoPedido.xhtml" />
 				</p:tab>
 			</p:tabView>
 
