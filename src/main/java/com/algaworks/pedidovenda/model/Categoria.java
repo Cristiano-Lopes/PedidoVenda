@@ -1,22 +1,27 @@
 package com.algaworks.pedidovenda.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "usuario")
-public class Usuario implements Serializable {
+@Table(name = "categoria")
+public class Categoria implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
-	private String nome;
-	private String senha;
+	private String descricao;
+	private List<Produto> produtos = new ArrayList<>();
 
 	@Id
 	@GeneratedValue
@@ -28,22 +33,23 @@ public class Usuario implements Serializable {
 		this.id = id;
 	}
 
-	@Column(nullable = false, length = 40)
-	public String getNome() {
-		return nome;
+	@Column(nullable = false, length = 60)
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
-	@Column(nullable = false)
-	public String getSenha() {
-		return senha;
+	@OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
+	@JoinColumn(nullable = false)
+	public List<Produto> getProdutos() {
+		return produtos;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
 	}
 
 	@Override
@@ -62,7 +68,7 @@ public class Usuario implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Usuario other = (Usuario) obj;
+		Categoria other = (Categoria) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

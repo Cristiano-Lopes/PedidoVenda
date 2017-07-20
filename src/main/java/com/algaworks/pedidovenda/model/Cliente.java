@@ -4,17 +4,23 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "cliente")
 public class Cliente implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String id;
+	private Long id;
 	private String nome;
 	private String email;
 	private String documentoReceitaFederal;
@@ -23,14 +29,15 @@ public class Cliente implements Serializable {
 
 	@Id
 	@GeneratedValue
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
+	@Column(nullable = false, length = 100)
 	public String getNome() {
 		return nome;
 	}
@@ -39,6 +46,7 @@ public class Cliente implements Serializable {
 		this.nome = nome;
 	}
 
+	@Column(nullable = false, length = 255)
 	public String getEmail() {
 		return email;
 	}
@@ -47,6 +55,7 @@ public class Cliente implements Serializable {
 		this.email = email;
 	}
 
+	@Column(name = "doc_receita_federal", nullable = false, length = 14)
 	public String getDocumentoReceitaFederal() {
 		return documentoReceitaFederal;
 	}
@@ -55,6 +64,8 @@ public class Cliente implements Serializable {
 		this.documentoReceitaFederal = documentoReceitaFederal;
 	}
 
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false, length = 10)
 	public TipoPessoa getTipo() {
 		return tipo;
 	}
@@ -63,7 +74,7 @@ public class Cliente implements Serializable {
 		this.tipo = tipo;
 	}
 
-	@Transient
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
 	public List<Endereco> getEnderecos() {
 		return enderecos;
 	}
